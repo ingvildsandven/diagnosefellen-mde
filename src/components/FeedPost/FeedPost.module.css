@@ -1,0 +1,111 @@
+.link {
+  text-decoration: none;
+  height: fit-content;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  width: 100%;
+  display: inline-block;
+}
+
+.article * {
+  color: var(--font-color);
+  margin: 0px;
+}
+
+.article {
+  break-inside: avoid;
+  display: block;
+  overflow: hidden;
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  position: relative;
+  transition: transform 0.2s ease-in;
+  background-color: var(--background-color);
+}
+
+.link:hover .article {
+  transform: translateY(-10px);
+  transition: transform 0.2s ease-in;
+}
+
+.image {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.date_type_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 10px;
+}
+
+.date,
+.type {
+  margin: 5px 5px;
+}
+
+.noImage{
+  margin-top: 15px;
+  margin-left: 55px;
+}
+
+.noImages{
+  margin-left: 55px;
+}
+
+.article h2 {
+  padding-top: 5px;
+  margin-inline: 5px;
+}
+
+.line_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+  height: 10px;
+}
+
+.line {
+  border-bottom: var(--main-color) 2px solid;
+  display: block;
+  height: 10px;
+  width: 65%;
+}
+
+.content_container p {
+  margin-top: 7px;
+}
+
+.continue_container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--main-color);
+  padding-block: 10px;
+  padding-top: 15px;
+  left: 0px;
+  border-radius: 0px 0px 10px 10px;
+  transform: translateY(10px);
+  transition: transform 0.2s ease-in;
+  position: relative;
+  z-index: -1;
+  text-align: left;
+}
+
+.link:hover .continue_container {
+  transform: translateY(0px);
+}
+
+.continue_container p,
+.icon {
+  margin: 0px 15px;
+  color: var(--background-color);
+  transition: transform 0.2s ease-in;
+}
+
+.continue_container:hover .icon {
+  transform: scale(1.3);
+}

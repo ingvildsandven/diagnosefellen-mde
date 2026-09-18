@@ -1,0 +1,28 @@
+.loader_container,
+.error_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.article_container {
+  margin: 20px;
+  columns: 3;
+}
+
+@media (max-width: 767px) {
+  .article_container {
+    margin: 20px;
+    columns: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .article_container {
+    margin: 20px;
+    columns: 1;
+  }
+}
+
