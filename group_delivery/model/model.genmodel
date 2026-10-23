@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/booking.model/src-gen" creationIcons="false" editDirectory="/booking.model.edit/src-gen"
+    editorDirectory="/booking.model.editor/src-gen" modelPluginID="booking.model"
+    modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>model.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Model" basePackage="booking" disposableProviderFactory="true"
+      ecorePackage="model.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//PaymentType">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//PaymentType/CARD"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//PaymentType/APPLEPAY"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//PaymentType/VIPPS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//DataFormat">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//DataFormat/JSON"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//DataFormat/XML"/>
+    </genEnums>
+    <genClasses ecoreClass="model.ecore#//BookingConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//BookingConfiguration/name"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//BookingConfiguration/page"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//BookingConfiguration/resource"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//BookingConfiguration/workflow"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Product">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Product/allowQuantitySelection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Product/minimumQuantity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Product/maximumQuantity"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Workflow">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Workflow/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//WorkflowStep"/>
+    <genClasses ecoreClass="model.ecore#//Approval"/>
+    <genClasses ecoreClass="model.ecore#//Payment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Payment/paymentMethod"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Notification">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Notification/recipient"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Notification/message"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Confirmation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Confirmation/notification"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Scheduling"/>
+    <genClasses ecoreClass="model.ecore#//Resource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Resource/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Page">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Page/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Page/form"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Form">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Form/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Form/field"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Field">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Field/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Field/required"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Recipient">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Recipient/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//APIRecipient">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//APIRecipient/endpointURL"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//APIRecipient/format"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//EmailRecipient">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//EmailRecipient/addres"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Service">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Service/scheduling"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//TextField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TextField/multiLine"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TextField/maxLength"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ChoiceField">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ChoiceField/options"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ChoiceOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ChoiceOption/label"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//EmailField"/>
+    <genClasses ecoreClass="model.ecore#//TimeSlotScheduling">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TimeSlotScheduling/slotDurationMinutes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TimeSlotScheduling/earliestStartTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TimeSlotScheduling/latestStartTime"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//DateRangeScheduling">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//DateRangeScheduling/minDays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//DateRangeScheduling/maxDays"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//WholeDayScheduling"/>
+  </genPackages>
+</genmodel:GenModel>

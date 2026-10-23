@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.example.org/model" nsPrefix="model">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    <details key="ecore.xml.type" value="http://www.eclipse.org/emf/2003/XMLType"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="BookingConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" eType="#//Page"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" lowerBound="1"
+        eType="#//Resource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workflow" lowerBound="1"
+        eType="#//Workflow" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//Resource">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidQuantityRange"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ValidQuantityRange" value="&#xA;&#x9;&#x9;    minimumQuantity > 0 and&#xA;&#x9;&#x9;    maximumQuantity >= minimumQuantity"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowQuantitySelection"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumQuantity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumQuantity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Workflow">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="AtMostOneApproval AtMostOnePayment AtMostOneConfirmation"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="AtMostOneApproval" value="&#xA;    &#x9;&#x9;steps->select(oclIsTypeOf(Approval))->size() &lt;= 1"/>
+      <details key="AtMostOnePayment" value="&#xA;&#x9;&#x9;    steps->select(oclIsTypeOf(Payment))->size() &lt;= 1"/>
+      <details key="AtMostOneConfirmation" value="&#xA;&#x9;&#x9;    steps->select(oclIsTypeOf(Confirmation))->size() &lt;= 1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
+        eType="#//WorkflowStep" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowStep" abstract="true" eSuperTypes="#//Approval #//Payment #//Confirmation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Approval"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paymentMethod" lowerBound="1"
+        eType="#//PaymentType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Notification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="recipient" lowerBound="1"
+        eType="#//Recipient" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Confirmation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notification" eType="#//Notification"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Scheduling" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Page">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="form" lowerBound="1" upperBound="-1"
+        eType="#//Form" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Form">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="field" lowerBound="1" upperBound="-1"
+        eType="#//Field" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PaymentType">
+    <eLiterals name="CARD"/>
+    <eLiterals name="APPLEPAY" value="1"/>
+    <eLiterals name="VIPPS" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Recipient" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="APIRecipient" eSuperTypes="#//Recipient">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endpointURL" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" lowerBound="1"
+        eType="#//DataFormat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmailRecipient" eSuperTypes="#//Recipient">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="addres" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Resource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scheduling" lowerBound="1"
+        eType="#//Scheduling" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextField" eSuperTypes="#//Field">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="PositiveMaxLength"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="PositiveMaxLength" value="&#xA;    &#x9;&#x9;maxLength > 0"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiLine" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLength" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceField" eSuperTypes="#//Field">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="options" lowerBound="1"
+        upperBound="-1" eType="#//ChoiceOption" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceOption">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmailField" eSuperTypes="#//Field"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeSlotScheduling" eSuperTypes="#//Scheduling">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="PositiveSlotDuration"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="PositiveSlotDuration" value="&#xA;    &#x9;&#x9;slotDurationMinutes > 0"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slotDurationMinutes" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="earliestStartTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latestStartTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DateRangeScheduling" eSuperTypes="#//Scheduling">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidDayRange"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ValidDayRange" value="&#xA;&#x9;&#x9;    minDays > 0 and&#xA;&#x9;&#x9;    maxDays >= minDays"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minDays" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxDays" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataFormat">
+    <eLiterals name="JSON"/>
+    <eLiterals name="XML" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WholeDayScheduling" eSuperTypes="#//Scheduling"/>
+</ecore:EPackage>
